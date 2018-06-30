@@ -4,13 +4,15 @@
 cwltool ./hello-docker.cwl ./job.yaml
 ```
 
-# Via Docker
+# Inside Docker Container
 
-note: it requires to be **Docker in Docker**
+it means it's to be **Docker in Docker**
 
 ```
-docker run -it --rm \
-  -v `pwd`:/root/hello-docker \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  otiai10/cwl-docker ./hello-docker.cwl ./job.yaml
+docker run -d --privileged \
+  -v `pwd`:/tmp/work \
+  --name c4cwl \
+  otiai10/c4cwl
+
+docker exec c4cwl cwltool /tmp/work/hello-docker.cwl /tmp/work/job.yaml
 ```
