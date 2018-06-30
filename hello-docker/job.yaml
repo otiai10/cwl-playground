@@ -1,0 +1,4 @@
+src:
+  class: File
+  path: ./hello.js
+inline: console.log('Hi, this is inline JavaScript')
